@@ -13,7 +13,7 @@ export const LoginSignup = () => {
          userType: ''
       },
       onSubmit: (values, { resetForm }) => {
-         console.log(values);
+         console.log(values) ;
          resetForm();
       },
    });
