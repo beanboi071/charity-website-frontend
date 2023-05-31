@@ -61,7 +61,7 @@ export const LoginSignup = () => {
                      />
                   </div>
                   <br />
-                  {isSignUp &&
+                  {isSignUp && 
                      <div className="item">
                         <label htmlFor="comfirmPwd">Confirm Password</label>
                         <br />
