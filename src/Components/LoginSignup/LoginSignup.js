@@ -81,7 +81,7 @@ export const LoginSignup = () => {
                            type="radio"
                            name="userType"
                            id="donorType"
-                           value="0"
+                           value={formik.values.userType}
                         />
                         <label htmlFor="donorType">Donor</label>
                      </div>
@@ -92,7 +92,7 @@ export const LoginSignup = () => {
                            type="radio"
                            name="userType"
                            id="NGOType"
-                           value="1"
+                           value={formik.values.userType}
                         />
                         <label htmlFor="NGOType">NGO</label>
                      </div>
@@ -104,7 +104,7 @@ export const LoginSignup = () => {
                               type="radio"
                               name="userType"
                               id="adminType"
-                              value="2"
+                              value={formik.values.userType}
                            />
                            <label htmlFor="adminType">Admin</label>
                         </div>
