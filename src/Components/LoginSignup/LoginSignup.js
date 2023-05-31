@@ -14,7 +14,7 @@ export const LoginSignup = () => {
       },
       onSubmit: (values, { resetForm }) => {
          console.log(values) ;
-          resetForm();
+          resetForm ();
       },
    });
    return (
