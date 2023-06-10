@@ -1,8 +1,8 @@
-import { LoginSignup } from "./Components/LoginSignup/LoginSignup";
+import { AppRouter } from "./Components/Common/AppRouter";
 function App() {
   return (
     <div className="App">
-      <LoginSignup/>
+        <AppRouter/>
     </div>
   );
 }

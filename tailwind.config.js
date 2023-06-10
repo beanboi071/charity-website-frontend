@@ -9,7 +9,8 @@ module.exports = {
         'primary':'#F6FFDE',
         'secondary':'#E3F2C1',
         'tertiary':'#C9DBB2',
-        'quaternary' : '#AAC8A7'
+        'quaternary' : '#AAC8A7',
+        'darkText': '#48592C'
       }
     },
   },
