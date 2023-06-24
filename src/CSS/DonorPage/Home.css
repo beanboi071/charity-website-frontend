@@ -1,0 +1,11 @@
+.hide{
+    opacity: 0;
+    filter:blur(5px);
+    transform: translateX(400px);
+}
+.show{
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateX(-0px);
+    transition: all 1s;
+}
