@@ -69,18 +69,7 @@ export const Login = ({ isSignUp, setSignup }) => {
                                 />
                                 <label htmlFor="NGOType">NGO</label>
                             </div>
-                            <pre> </pre>
-                            <div class>
-                                <input
-                                    className="radioBtn"
-                                    type="radio"
-                                    name="userType"
-                                    id="adminType"
-                                    onChange={handleChange}
-                                    value={values.userType}
-                                />
-                                <label htmlFor="adminType">Admin</label>
-                            </div>
+                            
                         </div>
                         <div className="w-full flex justify-center">
                             <button className="bg-emerald-200 w-full btn pl-3 pr-3 pt-1 pb-1 border-emerald-400 border-solid border-2  mt-4 rounded-full hover:bg-emerald-400 hover:text-white" type="submit">{isSignUp ? "Sign Up" : "Login"}</button>

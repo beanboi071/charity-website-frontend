@@ -1,5 +1,6 @@
 import * as yup from "yup"
-const basicSchema = yup.object().shape({
-    email: yup.string().email("Please enter a valid email.").required(),
-    
+export const signUpSchema = yup.object().shape({
+    email: yup.string().email("Please enter a valid email.").required("Email is required."),
+    password: yup.string().min(8,"The password must be atleast 8 characters long.").required("Password is required."),
+    confirmPwd : yup.string().oneOf([yup.ref('password'),null],"Passwords must match.").required("Confirm Password is required.")
 })
