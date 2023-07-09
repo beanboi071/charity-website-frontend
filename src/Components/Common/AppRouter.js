@@ -8,6 +8,8 @@ export const AppRouter = () => {
                 <Routes>
                     <Route path="/Login" element={<LoginSignup />} />
                     <Route path="/Donor/Home" element={<DonorPage />} />
+                    <Route path="/" element={<LoginSignup />} />
+
                 </Routes>
             </Router>
         </div>

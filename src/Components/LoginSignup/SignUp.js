@@ -3,9 +3,12 @@ import loginImg from '../../images/loginimg.jpg';
 import axios from "axios";
 import '../../CSS/LoginSignup/LoginSignup.css';
 import { signUpSchema } from "../../Schemas";
+import { baseUrl } from "../Common/endpoints";
+
 export const SignUp = ({isSignUp,setSignup}) => {
+    console.log(baseUrl)
     const SignupUser = async(data) => {
-        await axios.post(`https://localhost:44349/Api/SiginUp`,data).catch((err)=>console.log(err,"error"))
+        await axios.post(`${baseUrl}/Api/SiginUp`,data).catch((err)=>console.log(err,"error"))
       }
     const { handleChange,handleBlur, handleSubmit, values,errors } = useFormik({
         initialValues: {
