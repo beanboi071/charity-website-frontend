@@ -1,14 +1,30 @@
 import { Formik, useFormik } from "formik"
 import loginImg from '../../images/loginimg.jpg'
 import '../../CSS/LoginSignup/LoginSignup.css'
+import { baseUrl } from "../Common/endpoints";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { decodeToken } from "react-jwt";
 export const Login = ({ isSignUp, setSignup }) => {
+    const navigate = useNavigate();
+    const LoginUser = async(data) => {
+        const result = await axios.post(`${baseUrl}/Api/Login`,data);
+        if (result.data.status === 0){
+            localStorage.setItem("token",result.data.data);
+            const decodedToken = decodeToken(result.data.data);
+            console.log(decodedToken);
+            
+        }
+        console.log(result.data);
+      }
     const { handleChange, handleSubmit, values } = useFormik({
         initialValues: {
-            uNameOrEmail: '',
+            username: '',
             password: '',
             userType: ''
         },
         onSubmit: (values, { resetForm }) => {
+            LoginUser(values); 
             console.log(values);
             resetForm();
         },
@@ -21,14 +37,14 @@ export const Login = ({ isSignUp, setSignup }) => {
                     <div className="w-full" >
                         <br />
                         <div className="item">
-                            <label htmlFor="email">E-mail or Username</label>
+                            <label htmlFor="uName">E-mail or Username</label>
                             <br />
                             <input className="bg-emerald-100 p-1 border-solid border-2 border-quaternary   rounded-md w-full"
-                                id="email"
-                                name="email"
+                                id="uName"
+                                name="username"
                                 type="text"
                                 onChange={handleChange}
-                                value={values.uNameOrEmail}
+                                value={values.username}
                             />
                         </div>
                         <br />
@@ -53,7 +69,7 @@ export const Login = ({ isSignUp, setSignup }) => {
                                     name="userType"
                                     id="donorType"
                                     onChange={handleChange}
-                                    value={values.userType}
+                                    value = '0'
                                 />
                                 <label htmlFor="donorType">Donor</label>
                             </div>
@@ -65,7 +81,7 @@ export const Login = ({ isSignUp, setSignup }) => {
                                     name="userType"
                                     id="NGOType"
                                     onChange={handleChange}
-                                    value={values.userType}
+                                    value='1'
                                 />
                                 <label htmlFor="NGOType">NGO</label>
                             </div>

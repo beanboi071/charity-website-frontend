@@ -1,10 +1,10 @@
 import { Navbar } from "../Common/Navbar"
 import { Home } from "../Common/Home"
-export const DonorPage = () => {
+export const NGOHomePage = () => {
     return(
         <div>
-            <Navbar isDonor={true} />
-            <Home isDonor={true}/>
+            <Navbar isDonor={false} />
+            <Home isDonor={false}/>
         </div>
     )
 }

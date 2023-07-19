@@ -86,7 +86,7 @@ export const SignUp = ({isSignUp,setSignup}) => {
                             />
                         </div>
                         <div className="flex justify-center">
-                            <p>Login as:</p><pre> </pre>
+                            <p>Signup as:</p><pre> </pre>
                             <div>
                                 <input
                                     className="radioBtn"
