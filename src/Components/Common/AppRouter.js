@@ -4,6 +4,7 @@ import { DonorPage } from "../DonorPage/DonorPage";
 import { NGOHomePage } from "../NGOPage/NGOHomePage";
 import { CreatePage } from "../NGOPage/CreatePage";
 import { NotFound } from "./NotFound";
+import { MyProjects } from "../NGOPage/MyProjects";
 export const AppRouter = () => {
     return (
         <div>
@@ -13,8 +14,10 @@ export const AppRouter = () => {
                     <Route path="/Donor/Home" element={<DonorPage />} />
                     <Route path="/NGO/Home" element={<NGOHomePage />} />
                     <Route path="/NGO/Create" element={<CreatePage />} />
+                    <Route path="/NGO/MyProjects" element={<MyProjects/>}/>
                     <Route path="/" element={<LoginSignup />} />
                     <Route path="*" element={<NotFound />} />
+                
 
                 </Routes>
             </Router>

@@ -36,7 +36,7 @@ export default function FileUpload({ value, onChange, index, key, errors, name, 
               />} */}
             </div>
             :
-            <label htmlFor="dropzone-file" className={`${disabled ? 'hover:scale-100 cursor-no-drop' : ''} flex hover:scale-105  flex-col items-center justify-center w-[100%] h-[100%]   rounded-lg cursor-pointer bg-emerald-100 dark:bg-[#24262D]`}>
+            <label htmlFor="dropzone-file" className={`${disabled ? 'hover:scale-100 cursor-no-drop' : ''} flex hover:scale-105  flex-col items-center justify-center w-[100%] h-[100%]   rounded-lg cursor-pointer bg-secondary dark:bg-[#24262D]`}>
               <div className="w-[72px] h-[72px]"> <ImageIcon /></div>
               <input
                 id="dropzone-file"
