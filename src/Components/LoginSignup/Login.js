@@ -13,6 +13,12 @@ export const Login = ({ isSignUp, setSignup }) => {
             localStorage.setItem("token",result.data.data);
             const decodedToken = decodeToken(result.data.data);
             console.log(decodedToken);
+            if(data.userType === '0'){
+                navigate("/Donor/Home");
+            }
+            if(data.userType === '1'){
+                navigate("/NGO/Home");
+            }
             
         }
         console.log(result.data);
