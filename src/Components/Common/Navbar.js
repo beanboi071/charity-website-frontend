@@ -4,9 +4,8 @@ import { FaRegUserCircle } from "react-icons/fa"
 import { FaSearch } from "react-icons/fa"
 export const Navbar = ({isDonor}) => {
     console.log(isDonor);
-    return (
-        <div className="Navbar flex">
-            <div className="w-full h-[50px] bg-tertiary flex items-center justify-between">
+    return (<div>
+            <div className="Navbar fixed z-10 top-0 flex w-full h-[50px] bg-tertiary flex items-center justify-between">
                 
                 <div className="">
                 {isDonor && 
@@ -34,7 +33,8 @@ export const Navbar = ({isDonor}) => {
                 </div>
                 
             </div>
-
-        </div>
+            <div className="mb-[50px]"></div>
+            </div>
+        
     )
 }
