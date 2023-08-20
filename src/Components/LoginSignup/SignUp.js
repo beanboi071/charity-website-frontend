@@ -8,7 +8,7 @@ import { baseUrl } from "../Common/endpoints";
 export const SignUp = ({isSignUp,setSignup}) => {
     console.log(baseUrl)
     const SignupUser = async(data) => {
-        await axios.post(`${baseUrl}/Api/SiginUp`,data).catch((err)=>console.log(err,"error"))
+        await axios.post(`${baseUrl}Api/SiginUp`,data).catch((err)=>console.log(err,"error"))
       }
     const { handleChange,handleBlur, handleSubmit, values,errors } = useFormik({
         initialValues: {

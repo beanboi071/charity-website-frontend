@@ -8,7 +8,7 @@ import { decodeToken } from "react-jwt";
 export const Login = ({ isSignUp, setSignup }) => {
     const navigate = useNavigate();
     const LoginUser = async(data) => {
-        const result = await axios.post(`${baseUrl}/Api/Login`,data);
+        const result = await axios.post(`${baseUrl}Api/Login`,data);
         if (result.data.status === 0){
             localStorage.setItem("token",result.data.data);
             const decodedToken = decodeToken(result.data.data);

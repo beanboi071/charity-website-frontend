@@ -10,7 +10,7 @@ export const MyProjects = () => {
     const authHeader = `Bearer ${localStorage.getItem("token")}`;
     const [projects, setProjects] = useState([]);
     const getProjects = async () => {
-        await axios.get(`${baseUrl}/Api/ProjectApi/GetProjectsByNGOId`, { headers: { Authorization: authHeader } }).then((res) => {
+        await axios.get(`${baseUrl}Api/ProjectApi/GetProjectsByNGOId`, { headers: { Authorization: authHeader } }).then((res) => {
             setProjects(res.data.data);
         });
     }
