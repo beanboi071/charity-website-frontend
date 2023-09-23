@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
 import { Navbar } from "../Common/Navbar"
-import { Project } from "../Common/Project"
 import axios from "axios";
-import { authHeader, baseUrl } from "../Common/endpoints";
 import { useNavigate } from "react-router-dom";
 import { ProjectList } from "../Common/ProjectList";
+import { authHeader, baseUrl } from "../Common/endpoints";
 import { AppContext } from "../../App";
-export const MyProjects = () => {
-    const isDonor = false;
+export const Projects = () => {
+    const isDonor = true;
     const [projects, setProjects] = useState([]);
     const getProjects = async () => {
-        await axios.get(`${baseUrl}Api/ProjectApi/GetProjectsByNGOId`, { headers: { Authorization: authHeader } }).then((res) => {
+        await axios.get(`${baseUrl}Api/ProjectApi/GetApprovedProjects`, { headers: { Authorization: authHeader } }).then((res) => {
             setProjects(res.data.data);
         });
     }
@@ -21,12 +20,10 @@ export const MyProjects = () => {
     return (
         <AppContext.Provider value = {isDonor}>
         <div>
-              
-           <Navbar isDonor={false} />
-            <ProjectList isDonor={false} projects={projects}/>
- 
+            <Navbar isDonor={false} />
+            <ProjectList projects={projects}/>
+            
         </div>
         </AppContext.Provider>
- 
     )
 }

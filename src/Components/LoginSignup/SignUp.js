@@ -6,7 +6,7 @@ import { signUpSchema } from "../../Schemas";
 import { baseUrl } from "../Common/endpoints";
 
 export const SignUp = ({isSignUp,setSignup}) => {
-    console.log(baseUrl)
+
     const SignupUser = async(data) => {
         await axios.post(`${baseUrl}Api/SiginUp`,data).catch((err)=>console.log(err,"error"))
       }
@@ -24,6 +24,7 @@ export const SignUp = ({isSignUp,setSignup}) => {
             SignupUser(values);
             console.log("Submitted");
             resetForm();
+            setSignup(false);
         },
         validationSchema : signUpSchema
     });

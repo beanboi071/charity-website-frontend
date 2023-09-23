@@ -1,2 +1,3 @@
-export const baseUrl = "http://localhost:5236/"
-export const imagePath = "C:\\Users\\Riddhasoft-002\\Documents\\Rojan ko project\\charity-website-frontend\\src\\images\\"
+export const baseUrl = "https://localhost:7195/"
+export const imageUrl = baseUrl +"File?fileName="
+export const authHeader = `Bearer ${localStorage.getItem("token")}`;
