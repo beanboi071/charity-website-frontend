@@ -13,10 +13,10 @@ export const Login = ({ isSignUp, setSignup }) => {
             localStorage.setItem("token",result.data.data);
             const decodedToken = decodeToken(result.data.data);
             console.log(decodedToken);
-            if(data.userType === '0'){
+            if(data.userType === 0){
                 navigate("/Donor/Home");
             }
-            if(data.userType === '1'){
+            if(data.userType === 1){
                 navigate("/NGO/Home");
             }
             
@@ -27,9 +27,10 @@ export const Login = ({ isSignUp, setSignup }) => {
         initialValues: {
             username: '',
             password: '',
-            userType: ''
+            userType: null
         },
         onSubmit: (values, { resetForm }) => {
+            values.userType = parseInt(values.userType);
             LoginUser(values); 
             console.log(values);
             resetForm();
@@ -43,7 +44,7 @@ export const Login = ({ isSignUp, setSignup }) => {
                     <div className="w-full" >
                         <br />
                         <div className="item">
-                            <label htmlFor="uName">E-mail or Username</label>
+                            <label htmlFor="uName">Username</label>
                             <br />
                             <input className="bg-emerald-100 p-1 border-solid border-2 border-quaternary   rounded-md w-full"
                                 id="uName"
@@ -100,7 +101,7 @@ export const Login = ({ isSignUp, setSignup }) => {
 
                         <div className="flex justify-center">
                             <div>
-                                <p style={{ display: 'inline' }}>Already have an account?</p>
+                                <p style={{ display: 'inline' }}>Don't have an account?</p>
                                 <span>  </span>
                                 <p style={{ cursor: 'pointer', display: 'inline', color: 'blue' }} onClick={() => setSignup(true)}>Sign Up</p>
                             </div>

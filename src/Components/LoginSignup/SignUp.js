@@ -20,7 +20,7 @@ export const SignUp = ({isSignUp,setSignup}) => {
 
         },
         onSubmit: (values, { resetForm }) => {
-            console.log(values);
+            values.userType = parseInt(values.userType);
             SignupUser(values);
             console.log("Submitted");
             resetForm();

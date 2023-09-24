@@ -38,7 +38,7 @@ export const ProjectDetail = () =>{
         
     }, [])
     const donate = async(data) => {
-        console.log(data);
+        console.log(authHeader);
         await axios.post(`${baseUrl}Api/ProjectApi/DonateToProject`,data,{headers:{Authorization:authHeader}}).then(res => {
             if(res.data.status ===0){
                 getProjectDetails();
