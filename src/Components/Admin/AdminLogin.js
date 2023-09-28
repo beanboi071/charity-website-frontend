@@ -5,38 +5,29 @@ import { baseUrl } from "../Common/endpoints";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { decodeToken } from "react-jwt";
-import { ToastContainer, toast } from "react-toastify";
-export const Login = ({ isSignUp, setSignup }) => {
+export const AdminLogin = () => {
     const navigate = useNavigate();
-    
-    const LoginUser = async(data) => {
-        const result = await axios.post(`${baseUrl}Api/Login`,data);
+    const LoginAdmin = async(data) => {
+        const result = await axios.post(`${baseUrl}Api/AdminLogin`,data);
         if (result.data.status === 0){
             localStorage.setItem("token",result.data.data);
             const decodedToken = decodeToken(result.data.data);
             console.log(decodedToken);
-            if(data.userType === 0){
-                navigate("/Donor/Home");
-            }
-            if(data.userType === 1){
-                navigate("/NGO/Home");
-            }
             
-        }else
-        {
-            console.log("called");
-            toast.error(result.data.message);
+                navigate("/Admin/Dashboard");
+            
+            
         }
+        console.log(result.data);
       }
     const { handleChange, handleSubmit, values } = useFormik({
         initialValues: {
             username: '',
-            password: '',
-            userType: null
+            password: ''
         },
         onSubmit: (values, { resetForm }) => {
             values.userType = parseInt(values.userType);
-            LoginUser(values); 
+            LoginAdmin(values); 
             console.log(values);
             resetForm();
         },
@@ -72,52 +63,19 @@ export const Login = ({ isSignUp, setSignup }) => {
                             />
                         </div>
                         <br />
-                        <div className="flex justify-center">
-                            <p>Login as:</p><pre> </pre>
-                            <div>
-                                <input
-                                    className="radioBtn"
-                                    type="radio"
-                                    name="userType"
-                                    id="donorType"
-                                    onChange={handleChange}
-                                    value = '0'
-                                />
-                                <label htmlFor="donorType">Donor</label>
-                            </div>
-                            <pre> </pre>
-                            <div>
-                                <input
-                                    className="radioBtn"
-                                    type="radio"
-                                    name="userType"
-                                    id="NGOType"
-                                    onChange={handleChange}
-                                    value='1'
-                                />
-                                <label htmlFor="NGOType">NGO</label>
-                            </div>
-                            
-                        </div>
+                        
                         <div className="w-full flex justify-center">
-                            <button className="bg-emerald-200 w-full btn pl-3 pr-3 pt-1 pb-1 border-emerald-400 border-solid border-2  mt-4 rounded-full hover:bg-emerald-400 hover:text-white" type="submit">{isSignUp ? "Sign Up" : "Login"}</button>
+                            <button className="bg-emerald-200 w-full btn pl-3 pr-3 pt-1 pb-1 border-emerald-400 border-solid border-2  mt-4 rounded-full hover:bg-emerald-400 hover:text-white" type="submit">Login</button>
                         </div>
                         <br />
 
-                        <div className="flex justify-center">
-                            <div>
-                                <p style={{ display: 'inline' }}>Don't have an account?</p>
-                                <span>  </span>
-                                <p style={{ cursor: 'pointer', display: 'inline', color: 'blue' }} onClick={() => setSignup(true)}>Sign Up</p>
-                            </div>
-                        </div>
+                       
                     </div>
                 </form>
                 <div id="imgDiv" className="sm:w-2/5 w-0 rounded-tr-3xl rounded-br-3xl ">
                     <img className="rounded-tr-3xl rounded-br-3xl" style={{ height: '100%', objectFit: 'cover' }} src={loginImg} alt="login logo" />
                 </div>
             </div>
-            
         </div>
 
     )
