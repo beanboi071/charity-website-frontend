@@ -9,7 +9,7 @@ import { ToastContainer, toast } from "react-toastify";
 export const Login = ({ isSignUp, setSignup }) => {
     const navigate = useNavigate();
     
-    const LoginUser = async(data) => {
+    const LoginUser = async(data,resetForm) => {
         const result = await axios.post(`${baseUrl}Api/Login`,data);
         if (result.data.status === 0){
             localStorage.setItem("token",result.data.data);
@@ -21,26 +21,32 @@ export const Login = ({ isSignUp, setSignup }) => {
             if(data.userType === 1){
                 navigate("/NGO/Home");
             }
+            resetForm()
             
         }else
         {
             console.log("called");
             toast.error(result.data.message);
+            resetForm()
+
         }
       }
-    const { handleChange, handleSubmit, values } = useFormik({
+    const { handleChange, handleSubmit, values,setFieldValue } = useFormik({
         initialValues: {
             username: '',
             password: '',
             userType: null
         },
         onSubmit: (values, { resetForm }) => {
+            
             values.userType = parseInt(values.userType);
-            LoginUser(values); 
-            console.log(values);
-            resetForm();
+            LoginUser(values,resetForm); 
+           
         },
     });
+
+    console.log(values);
+
     return (
         <div className="bg-gray-200 w-[100vw] h-[100vh] flex justify-center items-center p-0 w-700 shadow-xl border-solid border-green-600">
             <div className="shadow-2xl w-full sm:w-[600px] h-full sm:h-auto sm:min-h-[400px] bg-yellow-500 flex sm:rounded-3xl">
@@ -80,8 +86,13 @@ export const Login = ({ isSignUp, setSignup }) => {
                                     type="radio"
                                     name="userType"
                                     id="donorType"
-                                    onChange={handleChange}
-                                    value = '0'
+                                    onChange={
+                                        ()=>{
+                                            setFieldValue('userType','0')
+                                        }
+                                    }
+                                    checked={values.userType==='0'}
+                                   
                                 />
                                 <label htmlFor="donorType">Donor</label>
                             </div>
@@ -92,8 +103,13 @@ export const Login = ({ isSignUp, setSignup }) => {
                                     type="radio"
                                     name="userType"
                                     id="NGOType"
-                                    onChange={handleChange}
-                                    value='1'
+                                    onChange={
+                                        ()=>{
+                                            setFieldValue('userType','1')
+                                        }
+                                    }
+                                    checked={values.userType==='1'}
+
                                 />
                                 <label htmlFor="NGOType">NGO</label>
                             </div>
