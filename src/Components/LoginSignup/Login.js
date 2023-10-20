@@ -3,7 +3,7 @@ import loginImg from '../../images/loginimg.jpg'
 import '../../CSS/LoginSignup/LoginSignup.css'
 import { baseUrl } from "../Common/endpoints";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { decodeToken } from "react-jwt";
 import { ToastContainer, toast } from "react-toastify";
 export const Login = ({ isSignUp, setSignup }) => {
@@ -76,6 +76,7 @@ export const Login = ({ isSignUp, setSignup }) => {
                                 onChange={handleChange}
                                 value={values.password}
                             />
+                          
                         </div>
                         <br />
                         <div className="flex justify-center">
@@ -118,10 +119,13 @@ export const Login = ({ isSignUp, setSignup }) => {
                         <div className="w-full flex justify-center">
                             <button className="bg-emerald-200 w-full btn pl-3 pr-3 pt-1 pb-1 border-emerald-400 border-solid border-2  mt-4 rounded-full hover:bg-emerald-400 hover:text-white" type="submit">{isSignUp ? "Sign Up" : "Login"}</button>
                         </div>
-                        <br />
+                  
 
-                        <div className="flex justify-center">
+                        <div className="flex flex-col py-4 justify-center items-center">
+                            <Link to={"/ResetPassword"} className="cursor-pointer" style={{color:'blue'}}>Forgot Password?</Link>
+                   
                             <div>
+                                
                                 <p style={{ display: 'inline' }}>Don't have an account?</p>
                                 <span>  </span>
                                 <p style={{ cursor: 'pointer', display: 'inline', color: 'blue' }} onClick={() => setSignup(true)}>Sign Up</p>

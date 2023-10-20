@@ -5,6 +5,7 @@ import { authHeader, baseUrl } from "./endpoints";
 
 export const VerifyNGO = ()=>{
     let props = useParams();
+   
     const[isVerified, setVerified] = useState(false);
     const verificationNGO = async () => {
         await axios.get(`${baseUrl}Api/NGOApi/VerifyNGO?NGOId=`+props.id, { headers: { Authorization: authHeader } }).then((res) => {
