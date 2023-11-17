@@ -15,6 +15,9 @@ import { ProjectRequests } from "../Admin/ProjectRequests";
 import { ChangePassword } from "./ChangePassword";
 import ResetPassword from "./ResetPassword";
 import VerifyOTP from "./VerifyOTP";
+import NGOProfile from "../NGOPage/NGOProfile";
+import DonorProfile from "../DonorPage/DonorProfile";
+import EditDonorProfile from "../DonorPage/EditDonorProfile";
 export const AppRouter = () => {
   return (
     <div>
@@ -35,6 +38,9 @@ export const AppRouter = () => {
           <Route path="/ChangePassword" element={<ChangePassword />} />
           <Route path="/ResetPassword" element={<ResetPassword />} />
           <Route path="/VerifyOTP" element={<VerifyOTP />} />
+          <Route path="/NGO/Profile" element={<NGOProfile />} />
+          <Route path="/Donor/Profile" element={<DonorProfile />} />
+          <Route path="/Donor/Profile/Edit" element={<EditDonorProfile />} />
           <Route path="/" element={<LoginSignup />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

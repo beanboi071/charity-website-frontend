@@ -7,7 +7,7 @@ export const Project = ({ item }) => {
     
     return (
         <div  onClick={() => {navigate("/ProjectDetail/"+item.id)}}>
-            <div class=" rounded shadow-lg hover:shadow-xl hover:scale-[102%] ease-in-out duration-200 hover:cursor-pointer active:shadow-lg active:scale-100">
+            <div class="w-full rounded shadow-lg hover:shadow-xl hover:scale-[103%] ease-in-out duration-200 hover:cursor-pointer active:shadow-lg active:scale-100 z-40">
                 <div className="h-[250px] overflow-hidden">
                    <img class="w-full  object-cover" src={imageUrl+ item.imagePath} alt="Project img" />
                 </div>

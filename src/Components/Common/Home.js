@@ -28,10 +28,10 @@ export const Home = ({isDonor}) => {
                     <p className="hide text-5xl">A non-profit that connects other non-profits to donors</p>
                     
                     {isDonor ?
-                     <div className=" mt-8 rounded-xl hover:bg-[#a4b292] ease-in-out duration-200 hover:cursor-pointer w-[300px] h-[75px] bg-tertiary flex justify-center items-center">
+                     <div className=" mt-8 rounded-xl hover:bg-lime-400 ease-in-out duration-200 hover:cursor-pointer w-[300px] h-[75px] bg-lime-200 flex justify-center items-center">
                          <p className="text-2xl text-darkText">Donate now</p>
                      </div>:
-                     <Link to={"/NGO/Create"} className=" mt-8 rounded-xl hover:bg-[#a4b292] ease-in-out duration-200 hover:cursor-pointer w-[300px] h-[75px] bg-tertiary flex justify-center items-center">
+                     <Link to={"/NGO/Create"} className=" mt-8 rounded-xl hover:bg-lime-400 ease-in-out duration-200 hover:cursor-pointer w-[300px] h-[75px] bg-lime-200 flex justify-center items-center">
                           <p className="text-2xl text-darkText" >Create Project</p>
                      </Link>
                     }

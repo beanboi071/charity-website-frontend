@@ -11,7 +11,7 @@ export const CreateForm = ()=>{
     
     const CreateProject = async(data) => {
         console.log(authHeader)
-        await axios.post(`${baseUrl}Api/ProjectApi/CreateProject`,data,{headers:{Authorization:authHeader}}).then(res => {
+        await axios.post(`${baseUrl}Api/ProjectApi/CreateProject`,data,{headers:{Authorization: authHeader}}).then(res => {
             if(res.data.status === 0){
                 navigate("/NGO/MyProjects");
             }

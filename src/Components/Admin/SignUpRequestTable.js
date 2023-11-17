@@ -12,7 +12,7 @@ export const SignUpRequestTable = ({signUps}) =>{
 
     }
     return(
-        <div className="w-10/12 h-full flex justify-center ">
+        <div className="w-full ml-64 h-full flex justify-center ">
             <div className="">
             <table className="w-full border-collapse mt-24">
     <tr className="bg-emerald-500">

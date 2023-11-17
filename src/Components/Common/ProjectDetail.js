@@ -14,7 +14,6 @@ export const ProjectDetail = () =>{
     const userType = decodeToken(localStorage.getItem('token')).UserType;
     console.log(userType);
     let props = useParams();
-    const isDonor = useContext(AppContext);
     const [projectDetails, setprojectDetails] = useState();
     const getProjectDetails = async () => {
         await axios.get(`${baseUrl}Api/ProjectApi/GetProjectDetails?projectId=`+props.id, { headers: { Authorization: authHeader } }).then((res) => {
