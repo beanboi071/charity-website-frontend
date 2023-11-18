@@ -16,18 +16,17 @@ export default function FileUpload({ value, onChange, index, key, errors, name, 
   //   setImageUrl(value);
   // }, [value])
   return (
-    <>
-      <div>
+    <div className="h-full object-cover">
+      <div className="h-full">
         {label ? <p className='text-sm mb-3'>{label}</p> : null}
-        <div className="flex flex-col items-center justify-center h-[6rem] w-full relative" key={key ?? ""}>
+        <div className="flex flex-col items-center justify-center h-full  relative" key={key ?? ""}>
           {value ?
-            <div className="h-[100%] w-[100%]"  >
+            <div className="h-full"  >
               <img
                 src={value}
                 alt=""
-                width={50}
-                height={50}
-                className='h-[100%] w-full object-contain rounded'
+                
+                className='h-full  object-cover rounded'
               />
               {/* {disabled !== true && <TrashIcon className="absolute w-5 top-2 right-2 z-99 cursor-pointer text-red-500 hover:scale-105"
                 onClick={() => {
@@ -62,7 +61,7 @@ export default function FileUpload({ value, onChange, index, key, errors, name, 
           }
         </div>
       </div>
-    </>
+    </div>
   );
 }
 export const ImageIcon = () => {

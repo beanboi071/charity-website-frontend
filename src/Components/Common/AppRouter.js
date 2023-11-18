@@ -18,6 +18,7 @@ import VerifyOTP from "./VerifyOTP";
 import NGOProfile from "../NGOPage/NGOProfile";
 import DonorProfile from "../DonorPage/DonorProfile";
 import EditDonorProfile from "../DonorPage/EditDonorProfile";
+import DonationHistory from "../Admin/DonationHistory";
 export const AppRouter = () => {
   return (
     <div>
@@ -27,6 +28,7 @@ export const AppRouter = () => {
           <Route path="/Admin/Dashboard" element={<AdminDashboard />} />
           <Route path="/Admin/SignUps" element={<SignUpRequests />} />
           <Route path="/Admin/ProjectRequests" element={<ProjectRequests />} />
+          <Route path="/Admin/DonationHistory" element={<DonationHistory />} />
           <Route path="/Login" element={<LoginSignup />} />
           <Route path="/Donor/Home" element={<DonorPage />} />
           <Route path="/NGO/Home" element={<NGOHomePage />} />

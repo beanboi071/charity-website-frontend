@@ -21,7 +21,7 @@ export default function DonorProfile() {
   };
   useEffect(() => {
     getDonorProfile();
-  });
+  },[]);
   return (
     <div>
       <Navbar />
@@ -33,9 +33,9 @@ export default function DonorProfile() {
             alt="Project img"
           />
         </div>
-        <div className="absolute top-[250px] w-[200px] h-[200px] overflow-hidden border-solid border-4 rounded-[50%] border-slate-300 bg-green-200 z-10  translate-y-[-50%] ">
+        <div className="absolute top-[250px] w-[200px] h-[200px] overflow-hidden border-solid border-4 rounded-[50%] border-slate-300 bg-white flex justify-center z-10  translate-y-[-50%] ">
           <img
-            class=" w-full  object-cover"
+            class=" h-full  object-cover"
             src={imageUrl + profile.image_Path}
             alt="Project img"
           />
