@@ -5,6 +5,7 @@ import { IconContext } from "react-icons";
 import { FaEdit } from "react-icons/fa";
 import { authHeader, baseUrl, imageUrl } from "../Common/endpoints";
 import { Link } from "react-router-dom";
+import Footer from "../Common/Footer";
 
 export default function DonorProfile() {
   const [profile, setProfile] = useState({});

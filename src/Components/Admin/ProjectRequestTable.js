@@ -3,7 +3,9 @@ import { authHeader, baseUrl, imageUrl } from "../Common/endpoints";
 import { useEffect, useState } from "react";
 import { IconContext } from "react-icons";
 import { FaArrowRight, FaArrowLeft, FaSearch } from "react-icons/fa";
+import { Navigate, useNavigate } from "react-router-dom";
 export const ProjectRequestTable = () => {
+  const navigate = useNavigate();
   const [projectRequests, setprojectRequests] = useState([]);
   const [search, setSearch] = useState("");
   const [skip, setSkip] = useState(0);
@@ -98,9 +100,9 @@ export const ProjectRequestTable = () => {
         {projectRequests.length !== 0 &&
           projectRequests.map((x) => {
             return (
-              <div
+              <div onClick={()=>navigate("/Admin/PendingProjectDetail/"+x.id)} 
                 key={x.id}
-                className="mb-3 mt-3 w-full overflow-hidden h-[128px] bg-gray-100 flex justify-ends"
+                className="mb-3 mt-3 w-full overflow-hidden h-[128px] hover:cursor-pointer bg-gray-100 flex justify-ends"
               >
                 <div className="w-[75%] flex">
                   <img

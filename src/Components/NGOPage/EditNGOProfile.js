@@ -8,15 +8,15 @@ import { convertImageToBase64 } from "../utils/convertImageToBase64";
 import { IconContext } from "react-icons";
 import { FaPlus, FaTimes } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-export default function EditDonorProfile() {
+export default function EditNGOProfile() {
   const navigate = useNavigate();
   const [profile, setProfile] = useState({});
 
   const [isShown, setShown] = useState(false);
   const [isClose, setClose] = useState(false);
-  const getDonorProfile = async() => {
+  const getNGOProfile = async() => {
     await axios
-      .get(`${baseUrl}Api/DonorApi/MyProfile`, {
+      .get(`${baseUrl}Api/NGOApi/MyProfile`, {
         headers: { Authorization: authHeader },
       })
       .then((res) => {
@@ -24,20 +24,20 @@ export default function EditDonorProfile() {
         setFieldValue('name', res.data.data.name );
         setFieldValue('username', res.data.data.username );
         setFieldValue('email', res.data.data.email );
+setFieldValue('website_Link',res.data.data.website_Link);
 
         console.log("check",res.data.data);
       });
   };
   const UpdateProfile = async (data) => {
-    await axios.put(`${baseUrl}Api/DonorApi/MyProfile`, data).then((res) => {
+    await axios.put(`${baseUrl}Api/NGOApi/MyProfile`, data).then((res) => {
       if (res.data.status === 0) {
-        console.log("output",res.data)
-        navigate("/Donor/Profile");
+        navigate("/NGO/Profile");
       }
     });
   };
   useEffect(() => {
-    getDonorProfile();
+    getNGOProfile();
   }, []);
 
   const {
@@ -54,6 +54,7 @@ export default function EditDonorProfile() {
       image_Path: null,
       email: "",
       name: "",
+      website_Link:""
     },
     onSubmit: (values, { resetForm }) => {
       console.log(values);
@@ -65,8 +66,8 @@ export default function EditDonorProfile() {
     <div>
       <Navbar />
       <div className=" h-[93vh] bg-gray-50 flex flex-col items-center  w-full relative ">
-        <div className="my-16 border-solid border-2 border-quaternary flex flex-col justify-center items-center py-6 w-1/2 rounded-3xl">
-          <form className="w-full px-36" onSubmit={handleSubmit}>
+        <div className="my-16 border-solid border-2 border-quaternary  flex flex-col justify-center items-center py-6 w-1/2 rounded-3xl">
+          <form className="w-full px-36 " onSubmit={handleSubmit}>
             {/* <div className="item">
                             <label htmlFor="targetAmount">imageBase64</label>
                             <br />
@@ -78,8 +79,8 @@ export default function EditDonorProfile() {
                                 value={values.imageBase64}
                             />
                         </div>      */}
-            <div className="flex flex-col items-center w-full ">
-              <div className="relative">
+            <div className="flex flex-col  items-center w-full ">
+              <div className="relative ">
                 <div className="  w-[150px] h-[150px] overflow-hidden border-solid border-4 rounded-[50%] border-slate-300 bg-white z-10  flex justify-center">
                   {isClose ? (
                     <img
@@ -150,7 +151,7 @@ export default function EditDonorProfile() {
                 </div>
               </div>
               <div className="item w-72">
-                <label htmlFor="name">Full Name</label>
+                <label htmlFor="name">NGO Name</label>
                 <br />
                 <input
                   className=" p-1 border-b-solid border-b-2 border-b-quaternary bg-gray-50 focus:outline-none w-full"
@@ -193,10 +194,23 @@ export default function EditDonorProfile() {
                   onBlur={handleBlur}
                 />
               </div>
-              <div className="w-[100%] flex items-center justify-center mt-[12px]">
+              <div className="item w-72">
+                <label htmlFor="email">Website Link</label>
+                <br />
+                <input
+                  className={'p-1 border-b-solid border-b-2 border-b-quaternary bg-gray-50 focus:outline-none w-full'}
+                  id="website_Link"
+                  name="website_Link"
+                  type="text"
+                  onChange={handleChange}
+                  value={values.website_Link}
+                  onBlur={handleBlur}
+                />
+              </div>
+              <div className="w-32 flex items-center justify-center mt-[12px]">
                 <input
                   type="submit"
-                  className="w-[100%] bg-emerald-200 border-solid border-2 border-lime-500 ease-in-out duration-200 hover:cursor-pointer hover:bg-tertiary hover:text-white rounded-3xl py-[5px]"
+                  className="w-[100%] bg-lime-200 border-solid border-2 text-darkText border-lime-500 ease-in-out duration-200 hover:cursor-pointer hover:bg-lime-400 hover:text-white rounded-3xl py-[5px]"
                   value="Save"
                 ></input>
               </div>

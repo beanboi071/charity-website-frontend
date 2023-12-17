@@ -3,6 +3,7 @@ import { IconContext } from "react-icons";
 import { FaRegUserCircle, FaSearch } from "react-icons/fa";
 import { useEffect, useRef, useState } from "react";
 import { decodeToken } from "react-jwt";
+import logo from '../../images/logo.png'
 
 export const Navbar = () => {
   const [userType, setUserType] = useState();
@@ -39,8 +40,8 @@ export const Navbar = () => {
   return (
     <div>
       <div className="Navbar z-50 fixed top-0 flex w-full h-[7vh] bg-lime-200 flex items-center justify-between">
-        <div>
-          {/* Your search bar code here if needed */}
+        <div className="h-full ml-4">
+        <img className=" h-full"  src={logo} alt="login logo" />
         </div>
         <div className="navItems h-full w-1/2 mr-[20px] flex justify-end items-center">
           <div className="w-[80px] flex justify-center">
@@ -48,7 +49,7 @@ export const Navbar = () => {
           </div>
           {userType === 0 && (
             <div className="w-[100px] flex justify-center">
-              <Link className="text-darkText" to={"/Home"}>Non-profits</Link>
+              <Link className="text-darkText" to={"/Donor/NGOs"}>Non-profits</Link>
             </div>
           )}
           {userType === 0 ?
@@ -60,7 +61,7 @@ export const Navbar = () => {
               <Link className="text-darkText" to={"/NGO/MyProjects"}>My Projects</Link>
             </div>
           }
-          <div className="mr-3 hover:cursor-pointer" onClick={() => setIsShown(!isShown)} ref={ref1}>
+          <div className="mr-3 ml-3 hover:cursor-pointer" onClick={() => setIsShown(!isShown)} ref={ref1}>
             <IconContext.Provider value={{ size: 30 }}>
               <FaRegUserCircle className="text-darkText" />
             </IconContext.Provider>

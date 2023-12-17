@@ -7,8 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { ProjectList } from "../Common/ProjectList";
 import { authHeader, baseUrl } from "../Common/endpoints";
 import { AppContext } from "../../App";
+import Footer from "../Common/Footer";
 export const Projects = () => {
-  const isDonor = true;
   const [projects, setProjects] = useState([]);
   const [search, setSearch] = useState("");
   const [ngoName, setNgoName] = useState("");
@@ -121,6 +121,7 @@ export const Projects = () => {
             {skip + 1} - {(skip+take) > count ? count : skip+take} of {count}
           </p>
         </div>
+        <Footer/>
     </div>
   );
 };

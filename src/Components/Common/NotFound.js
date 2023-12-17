@@ -1,21 +1,23 @@
 import React, { useEffect } from 'react';
-import { TweenMax, Power3 } from 'gsap';
+import { TweenMax, Power3 ,Power4,Power2,Power0,Power1} from 'gsap';
 export const NotFound = () => {
     useEffect(() => {
-      TweenMax.to('h1', 1, {
-        alpha: 1,
-        y: 20,
-        yoyo: true,
-        ease: Power3.easeInOut,
-      });
-  
-      TweenMax.staggerTo('#water path', 2, {
-        x: '+=10',
-        y: '+=5',
-        repeat: -1,
-        yoyo: true,
-        ease: Power3.easeInOut,
-      });
+     
+    //   TweenMax.staggerTo('#water path', 2, {
+    //     x: '+=50',
+    //     y: '+=20',
+    //     repeat: -1,
+    //     yoyo: true,
+    //     ease: Power2.easeInOut,
+    //   });
+	//   TweenMax.staggerTo('#bottle', 2, {
+    //     // x: '+=10',
+    //     y: '+=15',
+    //     repeat: -1,
+    //     yoyo: true,
+    //     ease: Power1.easeInOut,
+    //   });
+	 
   
       // Add the rest of the animation code here
   
@@ -101,8 +103,8 @@ export const NotFound = () => {
 	<circle fill="#FFFFFF" cx="585.701" cy="684.795" r="8.061"/>
 	<circle fill="#FFFFFF" cx="640.192" cy="818.792" r="8.061"/>
 </g>
-<g id="bottle">
-	<path fill="#FFFFFF" d="M589.59,332.821c6.882,1.926,13.794,3.701,20.812,5.024c4.953,0.352,9.882,0.345,14.836-0.011
+<g id="bottle" className='animate-[wiggle_1s_ease-in-out_infinite]y'>
+	<path fill="cyan" d="M589.59,332.821c6.882,1.926,13.794,3.701,20.812,5.024c4.953,0.352,9.882,0.345,14.836-0.011
 		c1.066-0.204,2.126-0.431,3.187-0.659c5.371-10.27,9.474-18.127,9.509-18.232l0.093-0.027c8.667-16.526-5.036-10.668,5.175-32.325
 		l10.401-19.835l-13.808-7.24l-10.467,19.961c-11.961,20.557-14.931,6.019-23.58,22.513l0.029,0.092
 		C605.686,302.203,597.821,317.157,589.59,332.821z"/>
@@ -111,7 +113,7 @@ export const NotFound = () => {
 	<path fill="#FFFFFF" d="M653.436,273.045c-0.365,0.695-1.232,0.967-1.927,0.602l-16.188-8.488
 		c-0.695-0.365-0.966-1.232-0.602-1.928l2.083-3.972c0.365-0.695,1.232-0.966,1.927-0.601l16.188,8.489
 		c0.695,0.364,0.966,1.23,0.602,1.926L653.436,273.045z"/>
-	<path fill="#005FB8" d="M579.017,352.949c-4.666,8.884-8.058,15.347-8.058,15.347c-1.54,2.937-0.408,6.566,2.529,8.106
+	<path  fill="#005FB8" d="M579.017,352.949c-4.666,8.884-8.058,15.347-8.058,15.347c-1.54,2.937-0.408,6.566,2.529,8.106
 		l21.672,11.364c2.937,1.54,6.566,0.408,8.106-2.529c0,0,9.991-19.073,19.247-36.759
 		C608.212,351.517,593.521,353.153,579.017,352.949z"/>
 </g>

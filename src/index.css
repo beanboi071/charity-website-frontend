@@ -10,3 +10,35 @@
       -moz-appearance: textfield !important;
     }
  }
+
+ @keyframes moveUpDown {
+  0%, 100% { transform: translateY(-5); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes moveRightWater {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(290px); }
+}
+
+@keyframes moveLeftWater {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(300px); }
+}
+
+/* Apply the animation to the circle */
+#bottle {
+ /* // fill: green; Circle color */
+  animation: moveUpDown 6s infinite ease-in-out; /* Apply the animation, make it repeat infinitely */
+}
+#leftWater {
+  /* // fill: green; Circle color */
+   animation: moveRightWater 2s infinite linear; /* Apply the animation, make it repeat infinitely */
+ }
+ #rightWater {
+  /* // fill: green; Circle color */
+   animation: moveLeftWater 4s infinite linear; /* Apply the animation, make it repeat infinitely */
+ }
+
+
+ 

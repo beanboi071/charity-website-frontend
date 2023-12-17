@@ -41,6 +41,7 @@ export const MyProjects = () => {
     <div className="">
       <Navbar />
       <div className="flex flex-col bg-primary h-full items-center py-6 ">
+        <div className="w-full">
         <div className="w-full flex flex-row justify-between px-32">
           <div className="w-[300px] border-solid border-2 border-quaternary rounded-3xl flex items-center justify-between bg-[#ffffff]">
             <input
@@ -74,6 +75,9 @@ export const MyProjects = () => {
         </div>
 
         <ProjectList projects={projects} />
+
+        <div className="flex justify-center items-center flex-col">
+
         <div className=" w-[96px]  rounded-xl mt-[48px] flex flex-row justify-between py-1">
           <button
             className="w-1/2 flex items-center justify-center"
@@ -101,7 +105,11 @@ export const MyProjects = () => {
         <p className="darkText">
         {skip + 1} - {(skip+take) > count ? count : skip+take} of {count}
         </p>
+        </div>
+        
+        </div>
       </div>
+     
     </div>
   );
 };

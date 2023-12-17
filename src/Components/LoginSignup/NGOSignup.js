@@ -32,14 +32,14 @@ export const NGOSignUp = ({setSignup,setDonor}) => {
     return (
         <div className="bg-gray-200 w-[100vw] h-[100vh] flex justify-center items-center p-0 w-700 shadow-xl border-solid border-green-600">
             <div className="shadow-2xl w-full sm:w-[600px] h-full sm:h-auto sm:min-h-[400px] bg-yellow-500 flex sm:rounded-3xl">
-                <form className="border-solid border-2 border-t-quaternary border-l-quaternary border-b-quaternary p-5 bg-green-200 flex items-center sm:rounded-tl-3xl sm:rounded-bl-3xl sm:w-3/5 w-full"
+                <form className="border-solid border-2 border-t-quaternary border-l-quaternary border-b-quaternary p-5 bg-neutral-100 flex items-center sm:rounded-tl-3xl sm:rounded-bl-3xl sm:w-3/5 w-full"
                     onSubmit={handleSubmit}>
                     <div className="w-full" >
                     <br />
                         <div className="item">
                             <label htmlFor="ngoName">NGO Name</label>
                             <br />
-                            <input className="bg-emerald-100 p-1 border-solid border-2 border-quaternary   rounded-md w-full"
+                            <input className="bg-slate-100 p-1 border-solid border-2 border-quaternary   rounded-md w-full"
                                 id="ngoName"
                                 name="ngoName"
                                 type="text"
@@ -51,7 +51,7 @@ export const NGOSignUp = ({setSignup,setDonor}) => {
                         <div className="item">
                             <label htmlFor="username">Username</label>
                             <br />
-                            <input className="bg-emerald-100 p-1 border-solid border-2 border-quaternary   rounded-md w-full"
+                            <input className="bg-slate-100 p-1 border-solid border-2 border-quaternary   rounded-md w-full"
                                 id="username"
                                 name="username"
                                 type="text"
@@ -63,7 +63,7 @@ export const NGOSignUp = ({setSignup,setDonor}) => {
                         <div className="item">
                             <label htmlFor="email">E-mail</label>
                             <br />
-                            <input className={`bg-emerald-100 p-1 border-solid border-2  rounded-md w-full
+                            <input className={`bg-slate-100 p-1 border-solid border-2  rounded-md w-full
                              ${errors.email ? 'input-error':'border-quaternary'} `}
                                 id="email"
                                 name="email"
@@ -77,7 +77,7 @@ export const NGOSignUp = ({setSignup,setDonor}) => {
                         <div className="item">
                             <label htmlFor="website">Website Link</label>
                             <br />
-                            <input className="bg-emerald-100 p-1 border-solid border-2 border-quaternary   rounded-md w-full"
+                            <input className="bg-slate-100 p-1 border-solid border-2 border-quaternary   rounded-md w-full"
                                 id="website"
                                 name="website"
                                 type="text"
@@ -89,7 +89,7 @@ export const NGOSignUp = ({setSignup,setDonor}) => {
                         <div className="item">
                             <label htmlFor="password">Create Password</label>
                             <br />
-                            <input className={`bg-emerald-100 p-1 border-solid border-2 rounded-md w-full
+                            <input className={`bg-slate-100 p-1 border-solid border-2 rounded-md w-full
                              ${errors.password ? 'input-error':'border-quaternary'}`}
                                 id="password"
                                 name="password"
@@ -102,7 +102,7 @@ export const NGOSignUp = ({setSignup,setDonor}) => {
                         <div className="item">
                             <label htmlFor="confirmPwd">Confirm Password</label>
                             <br />
-                            <input className="bg-emerald-100 p-1 border-solid border-2 border-quaternary rounded-md w-full"
+                            <input className="bg-slate-100 p-1 border-solid border-2 border-quaternary rounded-md w-full"
                                 id="confirmPwd"
                                 name="confirmPwd"
                                 type="password"
@@ -137,7 +137,7 @@ export const NGOSignUp = ({setSignup,setDonor}) => {
                             
                         </div>
                         <div className="w-full flex justify-center">
-                            <button className="bg-emerald-200 w-full btn pl-3 pr-3 pt-1 pb-1 border-emerald-400 border-solid border-2  mt-4 rounded-full hover:bg-emerald-400 hover:text-white" type="submit">Sign Up</button>
+                            <button className="bg-emerald-200 w-full btn pl-3 pr-3 pt-1 pb-1 border-emerald-300 border-solid border-2  mt-4 rounded-full hover:bg-emerald-300 hover:text-white" type="submit">Sign Up</button>
                         </div>
                         <br />
 

@@ -4,6 +4,8 @@ import { convertImageToBase64 } from "../utils/convertImageToBase64";
 import FileUpload from "../Common/FileUpload";
 import { baseUrl } from "../Common/endpoints";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+
 import axios from "axios";
 export const CreateForm = ()=>{
     const navigate = useNavigate();
@@ -14,6 +16,8 @@ export const CreateForm = ()=>{
         await axios.post(`${baseUrl}Api/ProjectApi/CreateProject`,data,{headers:{Authorization: authHeader}}).then(res => {
             if(res.data.status === 0){
                 navigate("/NGO/MyProjects");
+                toast.success(res.data.message);
+
             }
         })
       }
@@ -33,15 +37,15 @@ export const CreateForm = ()=>{
     });
     return (
     <div>
-        <div className="shadow-2xl w-full sm:w-[600px] h-full sm:h-auto sm:min-h-[400px] bg-primary flex sm:rounded-3xl">
-                <form className="border-solid border-2 border-t-quaternary border-l-quaternary border-b-quaternary p-5 bg-green-200 flex items-center sm:rounded-tl-3xl sm:rounded-bl-3xl sm:w-3/5 w-full"
+        <div className="shadow-2xl w-full sm:w-[600px] h-full sm:h-auto sm:min-h-[400px] bg-grey-100 flex sm:rounded-3xl">
+                <form className="border-solid border-2 border-t-quaternary border-l-quaternary border-b-quaternary p-5 bg-neutral-100 flex items-center sm:rounded-tl-3xl sm:rounded-bl-3xl sm:w-3/5 w-full"
                     onSubmit={handleSubmit}>
                     <div className="w-full" >
                         
                         <div className="item">
                             <label htmlFor="title">Title</label>
                             
-                            <input className="bg-green-200 p-1 border-b border-b-2 border-b-quaternary w-full focus:outline-none"
+                            <input className="bg-slate-100 p-1 border-b border-b-2 border-b-quaternary w-full focus:outline-none"
                                 id="title"
                                 name="title"
                                 type="text"
@@ -53,7 +57,7 @@ export const CreateForm = ()=>{
                         <div className="item mt-[8px]">
                             <label htmlFor="targetAmount">Target Amount</label>
                             
-                            <input className="bg-green-200 p-1 border-b border-b-2 border-b-quaternary w-full focus:outline-none"
+                            <input className="bg-slate-100 p-1 border-b border-b-2 border-b-quaternary w-full focus:outline-none"
                                 id="targetAmount"
                                 name="targetAmount"
                                 type="number"

@@ -8,6 +8,7 @@ import { decodeToken } from "react-jwt";
 import { useFormik } from "formik";
 import { RxCross2 } from "react-icons/rx";
 import { IconContext } from "react-icons"
+import { toast } from "react-toastify";
 
 export const ProjectDetail = () =>{
    
@@ -16,6 +17,7 @@ export const ProjectDetail = () =>{
     let props = useParams();
     const [projectDetails, setprojectDetails] = useState();
     const getProjectDetails = async () => {
+        console.log(authHeader);
         await axios.get(`${baseUrl}Api/ProjectApi/GetProjectDetails?projectId=`+props.id, { headers: { Authorization: authHeader } }).then((res) => {
             setprojectDetails(res.data.data);
         });
@@ -40,7 +42,9 @@ export const ProjectDetail = () =>{
         console.log(authHeader);
         await axios.post(`${baseUrl}Api/ProjectApi/DonateToProject`,data,{headers:{Authorization:authHeader}}).then(res => {
             if(res.data.status ===0){
+                toast.success(res.data.message);
                 getProjectDetails();
+
             }
             console.log(res);
             setIsVisible(false);
@@ -96,15 +100,15 @@ export const ProjectDetail = () =>{
         
         <Navbar isDonor={false} />
 
-        <div className="flex-col px-36">
+        <div className="flex-col px-36  pt-24 ">
             
             <div className="h-[500px] overflow-hidden">
             <img className="w-full object-cover" src={imageUrl+ projectDetails?.imagePath} alt="Project img" />
             </div>
-            <div>
+            <div className="my-2">
                 <p className="text-4xl font-semibold" >  {projectDetails?.title}</p>
             </div>
-            <div>
+            <div className="my-2">
                 <p className="text-xl">{projectDetails?.description}</p>
             </div>
             
