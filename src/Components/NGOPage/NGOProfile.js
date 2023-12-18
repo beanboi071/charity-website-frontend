@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Navbar } from '../Common/Navbar'
-import { authHeader, baseUrl, imageUrl } from '../Common/endpoints';
+import {  baseUrl, imageUrl } from '../Common/endpoints';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { IconContext } from 'react-icons';
@@ -12,7 +12,7 @@ export default function NGOProfile() {
   const getDonorProfile = async () => {
     await axios
       .get(`${baseUrl}Api/NGOApi/MyProfile`, {
-        headers: { Authorization: authHeader },
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       .then((res) => {
         console.log(res.data.data);

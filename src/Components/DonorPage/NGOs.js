@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { authHeader, baseUrl } from '../Common/endpoints';
+import { baseUrl } from '../Common/endpoints';
 import { IconContext } from 'react-icons';
 import { FaArrowLeft, FaArrowRight, FaSearch } from 'react-icons/fa';
 import NGOList from '../Common/NGOList';
@@ -18,7 +18,7 @@ export default function NGOs() {
       await axios
         .get(
           `${baseUrl}Api/NGOApi/List?search=${search}&skip=${skip}&take=${take}`,
-          { headers: { Authorization: authHeader } }
+          { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
         )
         .then((res) => {
           console.log(res.data.data);

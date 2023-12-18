@@ -24,13 +24,13 @@ export const Home = ({isDonor}) => {
         <div className="bg-primary">
             <div className="w-full h-full relative">
                 <img className="grayscale  brightness-[0.6] h-[90vh]" style={{ width: '100%', objectFit: 'cover'}} src={homeBanner} alt="login logo" />
-                <div className="w-[600px] text-white absolute left-[50px] top-[250px]">
+                <div className="w-[600px] text-white absolute left-[50px] top-[50vh]">
                     <p className="hide text-5xl">A non-profit that connects other non-profits to donors</p>
                     
                     {isDonor ?
-                     <div className=" mt-8 rounded-xl hover:bg-lime-400 ease-in-out duration-200 hover:cursor-pointer w-[300px] h-[75px] bg-lime-200 flex justify-center items-center">
+                     <Link to={"/Donor/Projects"} className=" mt-8 rounded-xl hover:bg-lime-400 ease-in-out duration-200 hover:cursor-pointer w-[300px] h-[75px] bg-lime-200 flex justify-center items-center">
                          <p className="text-2xl text-darkText">Donate now</p>
-                     </div>:
+                         </Link>:
                      <Link to={"/NGO/Create"} className=" mt-8 rounded-xl hover:bg-lime-400 ease-in-out duration-200 hover:cursor-pointer w-[300px] h-[75px] bg-lime-200 flex justify-center items-center">
                           <p className="text-2xl text-darkText" >Create Project</p>
                      </Link>
@@ -43,16 +43,16 @@ export const Home = ({isDonor}) => {
                 <p className="text-4xl">How it works?</p>
                 </div>
                 <div className="flex h-[300px] justify-center m-[30px]">
-                    <div className="w-1/4 h-full m-[20px] bg-secondary rounded-md shadow-xl flex justify-center items-center text-center p-3">
-                        <p className="text-xl">
-                            Nonprofits around the world apply and join GlobalGiving to access more funding, to build new skills, and to make important connections.
+                    <div className="w-1/4 h-full m-[20px] bg-neutral-900 rounded-md shadow-xl flex justify-center items-center text-center p-3">
+                        <p className="text-xl text-lightText">
+                            Nonprofits around the world apply and join Graceful Charity to access more funding, to build new skills, and to make important connections.
                         </p>
                     </div>
-                    <div className="w-1/4 h-full m-[20px] bg-secondary rounded-md shadow-xl flex justify-center items-center p-3">
-                        <p className="text-xl">Admin approves project</p>
+                    <div className="w-1/4 h-full m-[20px] bg-neutral-900 rounded-md shadow-xl flex justify-center items-center text-center p-3">
+                        <p className="text-xl text-lightText">NGOs can create projects to raise funds and donations from donors for various causes.</p>
                     </div>
-                    <div className="w-1/4 h-full m-[20px] bg-secondary rounded-md shadow-xl flex justify-center items-center p-3">
-                        <p className="text-xl">DOnor donates to project</p>
+                    <div className="w-1/4 h-full m-[20px] bg-neutral-900 rounded-md shadow-xl flex justify-center items-center text-center p-3">
+                        <p className="text-xl text-lightText">Donors can easily donate to the projects created by NGOs from the comfort of their home.</p>
                     </div>
                 </div>
                 </div>

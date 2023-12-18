@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Navbar } from './Navbar'
-import { authHeader, baseUrl, imageUrl } from './endpoints'
+import {  baseUrl, imageUrl } from './endpoints'
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { IconContext } from 'react-icons';
@@ -12,7 +12,7 @@ export default function NGODetail() {
   let props = useParams();
 const [NGODetail,setNGODetail] = useState();
 const getNGODetail = async () => {
-  await axios.get(`${baseUrl}Api/NGOApi/GetNGODetail?ngoId=`+props.id, { headers: { Authorization: authHeader } }).then((res) => {
+  await axios.get(`${baseUrl}Api/NGOApi/GetNGODetail?ngoId=`+props.id, { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }).then((res) => {
     setNGODetail(res.data.data);
     console.log(res.data.data);
   });
@@ -32,7 +32,7 @@ const getProjects = async () => {
   await axios
     .get(
       `${baseUrl}Api/ProjectApi/GetNGOProjects?ngoId=${props.id}&search=${search}&skip=${skip}&take=${take}`,
-      { headers: { Authorization: authHeader } }
+      { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
     )
     .then((res) => {
       setProjects(res.data.data.list);
@@ -66,19 +66,19 @@ useEffect(() => {
                 alt="Project img"
               />
             </div>
-            <div className="text-darkText mt-32 flex flex-col items-center">
+            <div className="text-darkText mt-32 w-full flex flex-col items-center">
               <p>{NGODetail?.username}</p>
               <p>{NGODetail?.name}</p>
               <p>{NGODetail?.email}</p>
               <a className='text-blue-700 underline' href={NGODetail?.website_Link}>visit website</a>
             </div>
-            <div className="flex flex-col bg-grey-50  items-center  ">
+            <div className="flex flex-col w-full items-center  ">
             <p className='text-2xl hover:cursor-pointer my-4' onClick={()=>setShowProjects(!showProjects)}>Projects</p>
             </div>
             {showProjects &&
-        <>
-            <div className="w-full flex flex-row justify-between px-32 relative">
-        <div className="w-[300px] bg-grey-50 border-solid border-2 border-quaternary rounded-3xl flex items-center justify-between ">
+        <div className='w-full '>
+            <div className="w-full w-full flex flex-row px-36 pt-6 ">
+        <div className="w-[300px]  border-solid  border-2 border-quaternary rounded-3xl flex items-center justify-between ">
           <input
             placeholder="Search..."
             onKeyDown={handleKeyDown}
@@ -99,49 +99,47 @@ useEffect(() => {
        
       </div>
 
-      <div className='bg-grey-50'>
+      <div className=' bg-grey-50'>
       <ProjectList projects={projects} />
-      </div>
-        <div className=" w-[96px] bg-grey-50  rounded-xl mt-[48px] flex flex-row justify-between py-1">
-          <button
-            className="w-1/2 flex items-center justify-center"
-            disabled={skip <= 0}
-            onClick={() => {
-              setSkip(skip - 12);
-            }}
-          >
-            <IconContext.Provider value={{ size: 30 }}>
-              <FaArrowLeft className="text-lime-600 hover:text-lime-800" />
-            </IconContext.Provider>
-          </button>
-          <button
-            className="w-1/2 flex items-center justify-center"
-            disabled={skip + take >= count}
-            onClick={() => {
-              setSkip(skip + 12);
-            }}
-          >
-            <IconContext.Provider value={{ size: 30 }}>
-              <FaArrowRight className="text-lime-600 hover:text-lime-800" />
-            </IconContext.Provider>
-          </button>
+      <div className=" w-full flex flex-col mt-[48px]  justify-center items-center py-1">
+          <div className="flex flex-row w-[96px] justify-between">
+            <button
+              className="w-1/2 flex items-center justify-center"
+              disabled={skip <= 0}
+              onClick={() => {
+                setSkip(skip - 12);
+              }}
+            >
+              <IconContext.Provider value={{ size: 30 }}>
+                <FaArrowLeft className ={(skip <= 0)?"text-slate-400":"text-lime-600 hover:text-lime-800"} />
+              </IconContext.Provider>
+            </button>
+            <button
+              className="w-1/2 flex items-center justify-center"
+              disabled={skip + take >= count}
+              onClick={() => {
+                setSkip(skip + 12);
+              }}
+            >
+              <IconContext.Provider value={{ size: 30 }}>
+                <FaArrowRight className ={(skip + take >= count)?"text-slate-400":"text-lime-600 hover:text-lime-800"} />
+              </IconContext.Provider>
+            </button>
+          </div>
+          <p className="darkText">
+            {skip + 1} - {(skip+take) > count ? count : skip+take} of {count}
+          </p>
         </div>
-        <p className="darkText">
-        {skip + 1} - {(skip+take) > count ? count : skip+take} of {count}
-        </p>
-        
-        </>
+</div>
      
         
         
-      
+      </div>
     
         }
         </div>
-        
-          </div>
-         
-  
+        </div>
+      
      
       )
 }

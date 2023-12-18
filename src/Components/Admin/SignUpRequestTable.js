@@ -1,10 +1,10 @@
 import axios from "axios";
-import { authHeader, baseUrl } from "../Common/endpoints";
+import {  baseUrl } from "../Common/endpoints";
 import { ToastContainer, toast } from "react-toastify";
 export const SignUpRequestTable = ({signUps}) =>{
     console.log(signUps);
     const sendVerificationLink = async (id) => {
-        await axios.get(`${baseUrl}Api/NGOApi/SendVerificationLink?NGOId=`+id, { headers: { Authorization: authHeader } }).then((res) => {
+        await axios.get(`${baseUrl}Api/NGOApi/SendVerificationLink?NGOId=`+id, { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }).then((res) => {
             if(res.data.status === 0){
                 toast.success(res.data.message);
             }
@@ -15,7 +15,7 @@ export const SignUpRequestTable = ({signUps}) =>{
         <div className="w-full ml-64 h-full flex justify-center ">
             <div className="">
             <table className="w-full border-collapse mt-24">
-    <tr className="bg-emerald-500">
+    <tr className="bg-lime-300">
         <th className="px-8 py-2">Username</th>
         <th className="px-8 py-2">Name</th>
         <th className="px-8 py-2">Email</th>
@@ -33,7 +33,7 @@ export const SignUpRequestTable = ({signUps}) =>{
                         <a target="_blank" href={x.website} className="text-blue-500 hover:underline">Visit Website</a>
                     </td>
                     <td className="px-8 py-2">
-                        <button onClick={() => sendVerificationLink(x.id)} className="px-2 py-1 bg-emerald-400 hover:text-white rounded hover:bg-emerald-700">Send Verification Link</button>
+                        <button onClick={() => sendVerificationLink(x.id)} className="px-2 py-1 bg-emerald-300 hover:text-white rounded hover:bg-emerald-700">Send Verification Link</button>
                     </td>
                 </tr>
             );

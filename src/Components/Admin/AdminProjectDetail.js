@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { AdminNavbar } from './AdminNavbar'
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import { authHeader, baseUrl, imageUrl } from '../Common/endpoints';
+import { baseUrl, imageUrl } from '../Common/endpoints';
 import { toast } from 'react-toastify';
 
 export default function AdminProjectDetail() {
@@ -11,7 +11,7 @@ export default function AdminProjectDetail() {
     const approveProject = async (id) => {
         await axios
           .get(`${baseUrl}Api/ProjectApi/ApproveProject?projectId=` + id, {
-            headers: { Authorization: authHeader },
+            headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
           })
           .then((res)=>{if(res.data.status === 0){
             getProjectDetails();
@@ -19,7 +19,7 @@ export default function AdminProjectDetail() {
           }});
       };
     const getProjectDetails = async () => {
-        await axios.get(`${baseUrl}Api/ProjectApi/GetProjectDetails?projectId=`+props.id, { headers: { Authorization: authHeader } }).then((res) => {
+        await axios.get(`${baseUrl}Api/ProjectApi/GetProjectDetails?projectId=`+props.id, { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }).then((res) => {
             setprojectDetails(res.data.data);
             console.log(res.data.data);
 

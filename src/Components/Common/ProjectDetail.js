@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import { authHeader, baseUrl, imageUrl } from "../Common/endpoints";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import {  baseUrl, imageUrl } from "../Common/endpoints";
 import { Navbar } from "../Common/Navbar";
 import { AppContext } from "../../App";
 import { decodeToken } from "react-jwt";
@@ -11,14 +11,14 @@ import { IconContext } from "react-icons"
 import { toast } from "react-toastify";
 
 export const ProjectDetail = () =>{
-   
+   const navigate = useNavigate();
     const userType = decodeToken(localStorage.getItem('token')).UserType;
     console.log(userType);
     let props = useParams();
     const [projectDetails, setprojectDetails] = useState();
     const getProjectDetails = async () => {
-        console.log(authHeader);
-        await axios.get(`${baseUrl}Api/ProjectApi/GetProjectDetails?projectId=`+props.id, { headers: { Authorization: authHeader } }).then((res) => {
+        console.log(`Bearer ${localStorage.getItem("token")}`);
+        await axios.get(`${baseUrl}Api/ProjectApi/GetProjectDetails?projectId=`+props.id, { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }).then((res) => {
             setprojectDetails(res.data.data);
         });
     }
@@ -39,8 +39,8 @@ export const ProjectDetail = () =>{
         
     }, [])
     const donate = async(data) => {
-        console.log(authHeader);
-        await axios.post(`${baseUrl}Api/ProjectApi/DonateToProject`,data,{headers:{Authorization:authHeader}}).then(res => {
+        console.log(`Bearer ${localStorage.getItem("token")}`);
+        await axios.post(`${baseUrl}Api/ProjectApi/DonateToProject`,data,{headers:{Authorization:`Bearer ${localStorage.getItem("token")}`}}).then(res => {
             if(res.data.status ===0){
                 toast.success(res.data.message);
                 getProjectDetails();
@@ -100,13 +100,16 @@ export const ProjectDetail = () =>{
         
         <Navbar isDonor={false} />
 
-        <div className="flex-col px-36  pt-24 ">
+        <div className="flex-col px-36  py-12 ">
             
             <div className="h-[500px] overflow-hidden">
             <img className="w-full object-cover" src={imageUrl+ projectDetails?.imagePath} alt="Project img" />
             </div>
             <div className="my-2">
-                <p className="text-4xl font-semibold" >  {projectDetails?.title}</p>
+                <p  className="text-4xl  font-semibold" >  {projectDetails?.title}</p>
+            </div>
+            <div className="">
+                <p onClick={() => {navigate("/NGODetail/"+projectDetails?.ngoId)}} className="text-sm hover:cursor-pointer text-slate-500" >  {projectDetails?.ngoUsername}</p>
             </div>
             <div className="my-2">
                 <p className="text-xl">{projectDetails?.description}</p>
@@ -119,8 +122,8 @@ export const ProjectDetail = () =>{
                 <p>{projectDetails?.amountRaised} / {projectDetails?.targetAmount}</p>
                 <p>{projectDetails?.createdDateTime.split(" ")[0]}</p>
                 {(userType === 0) && 
-                <div onClick={()=>setIsVisible(true)} className=" mt-2 rounded-xl hover:bg-[#a4b292] ease-in-out duration-200 hover:cursor-pointer w-[300px] h-[46px] bg-tertiary flex justify-center items-center">
-                <p className="text-2xl text-darkText" >Donate</p>
+                <div onClick={()=>setIsVisible(true)} className=" mt-2 rounded-xl text-darkText hover:bg-lime-500 hover:text-lightText ease-in-out duration-200 hover:cursor-pointer w-[300px] h-[46px] bg-lime-300 flex justify-center items-center">
+                <p className="text-2xl " >Donate</p>
                 </div>
                 }
                 

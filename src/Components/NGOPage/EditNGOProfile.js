@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Navbar } from "../Common/Navbar";
-import { authHeader, baseUrl, imageUrl } from "../Common/endpoints";
+import {  baseUrl, imageUrl } from "../Common/endpoints";
 import axios from "axios";
 import { useFormik } from "formik";
 import FileUpload from "../Common/FileUpload";
@@ -17,7 +17,7 @@ export default function EditNGOProfile() {
   const getNGOProfile = async() => {
     await axios
       .get(`${baseUrl}Api/NGOApi/MyProfile`, {
-        headers: { Authorization: authHeader },
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       .then((res) => {
         setProfile(res.data.data);
@@ -30,7 +30,7 @@ setFieldValue('website_Link',res.data.data.website_Link);
       });
   };
   const UpdateProfile = async (data) => {
-    await axios.put(`${baseUrl}Api/NGOApi/MyProfile`, data).then((res) => {
+    await axios.put(`${baseUrl}Api/NGOApi/MyProfile`, data,{headers:{Authorization: `Bearer ${localStorage.getItem("token")}`}}).then((res) => {
       if (res.data.status === 0) {
         navigate("/NGO/Profile");
       }

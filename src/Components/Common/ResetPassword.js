@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import { authHeader, baseUrl } from "./endpoints";
+import {  baseUrl } from "./endpoints";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";

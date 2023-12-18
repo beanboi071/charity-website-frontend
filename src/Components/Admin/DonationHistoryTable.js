@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { authHeader, baseUrl, imageUrl } from "../Common/endpoints";
+import {  baseUrl, imageUrl } from "../Common/endpoints";
 import axios from "axios";
 import { IconContext } from "react-icons";
 import { FaArrowLeft, FaArrowRight, FaSearch } from "react-icons/fa";
@@ -20,7 +20,7 @@ export default function DonationHistoryTable() {
     await axios
       .get(
         `${baseUrl}Api/ProjectApi/GetDonationHistory?projectName=${projectName}&ngoName=${ngoName}&donorName=${donorName}&skip=${skip}&take=${take}`,
-        { headers: { Authorization: authHeader } }
+        { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
       )
       .then((res) => {
         console.log(res.data.data);

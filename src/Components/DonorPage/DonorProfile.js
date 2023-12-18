@@ -3,7 +3,7 @@ import { Navbar } from "../Common/Navbar";
 import axios from "axios";
 import { IconContext } from "react-icons";
 import { FaEdit } from "react-icons/fa";
-import { authHeader, baseUrl, imageUrl } from "../Common/endpoints";
+import {  baseUrl, imageUrl } from "../Common/endpoints";
 import { Link } from "react-router-dom";
 import Footer from "../Common/Footer";
 
@@ -13,7 +13,7 @@ export default function DonorProfile() {
   const getDonorProfile = async () => {
     await axios
       .get(`${baseUrl}Api/DonorApi/MyProfile`, {
-        headers: { Authorization: authHeader },
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       .then((res) => {
         console.log(res.data.data);

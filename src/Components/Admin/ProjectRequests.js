@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { authHeader, baseUrl } from "../Common/endpoints";
+import {  baseUrl } from "../Common/endpoints";
 import { AdminNavbar } from "./AdminNavbar";
 import { ProjectRequestTable } from "./ProjectRequestTable";
 

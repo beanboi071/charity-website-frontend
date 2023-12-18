@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Navbar } from "../Common/Navbar";
-import { authHeader, baseUrl, imageUrl } from "../Common/endpoints";
+import {  baseUrl, imageUrl } from "../Common/endpoints";
 import axios from "axios";
 import { useFormik } from "formik";
 import FileUpload from "../Common/FileUpload";
@@ -17,7 +17,7 @@ export default function EditDonorProfile() {
   const getDonorProfile = async() => {
     await axios
       .get(`${baseUrl}Api/DonorApi/MyProfile`, {
-        headers: { Authorization: authHeader },
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       .then((res) => {
         setProfile(res.data.data);

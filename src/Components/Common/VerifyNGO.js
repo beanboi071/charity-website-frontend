@@ -1,14 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { authHeader, baseUrl } from "./endpoints";
+import {  baseUrl } from "./endpoints";
 
 export const VerifyNGO = ()=>{
     let props = useParams();
    
     const[isVerified, setVerified] = useState(false);
     const verificationNGO = async () => {
-        await axios.get(`${baseUrl}Api/NGOApi/VerifyNGO?NGOId=`+props.id, { headers: { Authorization: authHeader } }).then((res) => {
+        await axios.get(`${baseUrl}Api/NGOApi/VerifyNGO?NGOId=`+props.id, { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }).then((res) => {
             console.log(res);
             if(res.data.status === 0){
                 setVerified(true);

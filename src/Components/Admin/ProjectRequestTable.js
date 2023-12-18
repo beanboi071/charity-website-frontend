@@ -1,5 +1,5 @@
 import axios from "axios";
-import { authHeader, baseUrl, imageUrl } from "../Common/endpoints";
+import {  baseUrl, imageUrl } from "../Common/endpoints";
 import { useEffect, useState } from "react";
 import { IconContext } from "react-icons";
 import { FaArrowRight, FaArrowLeft, FaSearch } from "react-icons/fa";
@@ -16,7 +16,7 @@ export const ProjectRequestTable = () => {
     await axios
       .get(
         `${baseUrl}Api/ProjectApi/GetPendingProjects?search=${search}&ngoName=${ngoName}&skip=${skip}&take=${take}`,
-        { headers: { Authorization: authHeader } }
+        { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
       )
       .then((res) => {
         setprojectRequests(res.data.data.list);
@@ -30,12 +30,12 @@ export const ProjectRequestTable = () => {
   const approveProject = async (id) => {
     await axios
       .get(`${baseUrl}Api/ProjectApi/ApproveProject?projectId=` + id, {
-        headers: { Authorization: authHeader },
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       .then((res) => {
         axios
           .get(`${baseUrl}Api/ProjectApi/GetPendingProjects?skip=0&take=10`, {
-            headers: { Authorization: authHeader },
+            headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
           })
           .then((res) => {
             setprojectRequests(res.data.data.list);

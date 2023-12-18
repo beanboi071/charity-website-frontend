@@ -1,11 +1,11 @@
 import { useFormik } from "formik";
 import { Navbar } from "./Navbar"
 import axios from "axios";
-import { authHeader, baseUrl } from "./endpoints";
+import { baseUrl } from "./endpoints";
 
 export const ChangePassword = () => {
     const changePassword = async(data)=>{
-        const result = await axios.post(`${baseUrl}Api/ChangePassword`,data,{headers:{Authorization:authHeader}});
+        const result = await axios.post(`${baseUrl}Api/ChangePassword`,data,{headers:{Authorization:`Bearer ${localStorage.getItem("token")}`}});
     }
     const { handleChange, handleSubmit, values,setFieldValue,formik } = useFormik({
         initialValues: {

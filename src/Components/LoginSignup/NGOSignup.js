@@ -22,13 +22,12 @@ export const NGOSignUp = ({setSignup,setDonor}) => {
         },
         onSubmit: (values, { resetForm }) => {
             SignupUser(values);
-            console.log("Submitted");
+       
             resetForm();
             setSignup(false);
         },
         validationSchema : signUpSchema
     });
-    console.log(errors);
     return (
         <div className="bg-gray-200 w-[100vw] h-[100vh] flex justify-center items-center p-0 w-700 shadow-xl border-solid border-green-600">
             <div className="shadow-2xl w-full sm:w-[600px] h-full sm:h-auto sm:min-h-[400px] bg-yellow-500 flex sm:rounded-3xl">

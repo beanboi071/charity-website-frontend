@@ -4,7 +4,7 @@ import { Project } from "../Common/Project";
 import axios from "axios";
 import { IconContext } from "react-icons";
 import { FaArrowRight, FaArrowLeft, FaSearch, FaPlus } from "react-icons/fa";
-import { authHeader, baseUrl } from "../Common/endpoints";
+import { baseUrl } from "../Common/endpoints";
 import { Link, useNavigate } from "react-router-dom";
 import { ProjectList } from "../Common/ProjectList";
 import { AppContext } from "../../App";
@@ -20,7 +20,7 @@ export const MyProjects = () => {
     await axios
       .get(
         `${baseUrl}Api/ProjectApi/GetProjectsByNGOId?search=${search}&skip=${skip}&take=${take}`,
-        { headers: { Authorization: authHeader } }
+        { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
       )
       .then((res) => {
         setProjects(res.data.data.list);
@@ -87,7 +87,7 @@ export const MyProjects = () => {
             }}
           >
             <IconContext.Provider value={{ size: 30 }}>
-              <FaArrowLeft className="text-lime-600 hover:text-lime-800" />
+              <FaArrowLeft className ={(skip <= 0)?"text-slate-400":"text-lime-600 hover:text-lime-800"} />
             </IconContext.Provider>
           </button>
           <button
@@ -98,7 +98,7 @@ export const MyProjects = () => {
             }}
           >
             <IconContext.Provider value={{ size: 30 }}>
-              <FaArrowRight className="text-lime-600 hover:text-lime-800" />
+              <FaArrowRight className ={(skip + take >= count)?"text-slate-400":"text-lime-600 hover:text-lime-800"} />
             </IconContext.Provider>
           </button>
         </div>

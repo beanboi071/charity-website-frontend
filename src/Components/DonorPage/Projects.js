@@ -5,7 +5,7 @@ import { IconContext } from "react-icons";
 import { FaArrowRight, FaArrowLeft, FaSearch, FaPlus } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { ProjectList } from "../Common/ProjectList";
-import { authHeader, baseUrl } from "../Common/endpoints";
+import { baseUrl } from "../Common/endpoints";
 import { AppContext } from "../../App";
 import Footer from "../Common/Footer";
 export const Projects = () => {
@@ -19,7 +19,7 @@ export const Projects = () => {
     await axios
       .get(
         `${baseUrl}Api/ProjectApi/GetApprovedProjects?search=${search}&ngoName=${ngoName}&skip=${skip}&take=${take}`,
-        { headers: { Authorization: authHeader } }
+        { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
       )
       .then((res) => {
         setProjects(res.data.data.list);

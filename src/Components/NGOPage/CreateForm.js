@@ -2,18 +2,18 @@ import { useFormik } from "formik"
 import loginImg from '../../images/loginimg.jpg'
 import { convertImageToBase64 } from "../utils/convertImageToBase64";
 import FileUpload from "../Common/FileUpload";
-import { baseUrl } from "../Common/endpoints";
+import {  baseUrl } from "../Common/endpoints";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
 import axios from "axios";
 export const CreateForm = ()=>{
     const navigate = useNavigate();
-    const authHeader = `Bearer ${localStorage.getItem("token")}`;
+  
     
     const CreateProject = async(data) => {
-        console.log(authHeader)
-        await axios.post(`${baseUrl}Api/ProjectApi/CreateProject`,data,{headers:{Authorization: authHeader}}).then(res => {
+   
+        await axios.post(`${baseUrl}Api/ProjectApi/CreateProject`,data,{headers:{Authorization: `Bearer ${localStorage.getItem("token")}`}}).then(res => {
             if(res.data.status === 0){
                 navigate("/NGO/MyProjects");
                 toast.success(res.data.message);
