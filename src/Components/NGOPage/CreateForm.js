@@ -18,6 +18,8 @@ export const CreateForm = ()=>{
                 navigate("/NGO/MyProjects");
                 toast.success(res.data.message);
 
+            }else{
+                toast.warning(res.data.message);
             }
         })
       }

@@ -23,6 +23,7 @@ import AdminProjectDetail from "../Admin/AdminProjectDetail";
 import NGOs from "../DonorPage/NGOs";
 import NGODetail from "./NGODetail";
 import NotFound from "./NotFound";
+import RecoverPassword from "./RecoverPassword";
 export const AppRouter = () => {
   return (
     <div>
@@ -43,6 +44,8 @@ export const AppRouter = () => {
           <Route path="/NGO/MyProjects" element={<MyProjects />} />
           <Route path="/Donor/Projects" element={<Projects />} />
           <Route path="/ChangePassword" element={<ChangePassword />} />
+          <Route path="/RecoverPassword" element={<RecoverPassword />} />
+
           <Route path="/ResetPassword" element={<ResetPassword />} />
           <Route path="/VerifyOTP" element={<VerifyOTP />} />
           <Route path="/NGO/Profile" element={<NGOProfile />} />

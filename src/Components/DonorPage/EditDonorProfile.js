@@ -29,7 +29,7 @@ export default function EditDonorProfile() {
       });
   };
   const UpdateProfile = async (data) => {
-    await axios.put(`${baseUrl}Api/DonorApi/MyProfile`, data).then((res) => {
+    await axios.put(`${baseUrl}Api/DonorApi/MyProfile`, data,{headers:{Authorization: `Bearer ${localStorage.getItem("token")}`}}).then((res) => {
       if (res.data.status === 0) {
         console.log("output",res.data)
         navigate("/Donor/Profile");

@@ -26,7 +26,7 @@ export const Login = ({ isSignUp, setSignup }) => {
             
         }else
         {
-            toast.error(result.data.message);
+            toast.warning(result.data.message);
         
 
         }

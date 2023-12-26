@@ -42,10 +42,12 @@ function VerifyOTP() {
           navigate("/");
           toast.warning(res.data.message);
         } else {
+          navigate("");
           toast.warning(res.data.message);
         }
       } else {
-        console.log("otp verified");
+        toast.success(res.data.message);
+        navigate("/RecoverPassword")
       }
     });
   };

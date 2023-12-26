@@ -45,6 +45,8 @@ export const ProjectDetail = () =>{
                 toast.success(res.data.message);
                 getProjectDetails();
 
+            }else{
+                toast.warning(res.data.message);
             }
             console.log(res);
             setIsVisible(false);

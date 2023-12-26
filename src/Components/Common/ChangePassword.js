@@ -2,10 +2,20 @@ import { useFormik } from "formik";
 import { Navbar } from "./Navbar"
 import axios from "axios";
 import { baseUrl } from "./endpoints";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export const ChangePassword = () => {
+    const navigate = useNavigate();
     const changePassword = async(data)=>{
-        const result = await axios.post(`${baseUrl}Api/ChangePassword`,data,{headers:{Authorization:`Bearer ${localStorage.getItem("token")}`}});
+        await axios.post(`${baseUrl}Api/ChangePassword`,data,{headers:{Authorization:`Bearer ${localStorage.getItem("token")}`}}).then(res => {
+            if(res.data.status === 0){
+                toast.success(res.data.message);
+            }else{
+                toast.warning(res.data.message);
+            }
+        })
+    
     }
     const { handleChange, handleSubmit, values,setFieldValue,formik } = useFormik({
         initialValues: {
