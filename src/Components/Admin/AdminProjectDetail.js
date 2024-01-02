@@ -18,6 +18,16 @@ export default function AdminProjectDetail() {
             toast.success(res.data.message);
           }});
       };
+      const rejectProject = async (id) => {
+        await axios
+          .get(`${baseUrl}Api/ProjectApi/RejectProject?projectId=` + id, {
+            headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+          })
+          .then((res)=>{if(res.data.status === 0){
+            getProjectDetails();
+            toast.success(res.data.message);
+          }});
+      };
     const getProjectDetails = async () => {
         await axios.get(`${baseUrl}Api/ProjectApi/GetProjectDetails?projectId=`+props.id, { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }).then((res) => {
             setprojectDetails(res.data.data);
@@ -48,11 +58,26 @@ export default function AdminProjectDetail() {
                 <p>{projectDetails?.amountRaised} / {projectDetails?.targetAmount}</p>
                 <p>{projectDetails?.createdDateTime.split(" ")[0]}</p>
                 <a href={projectDetails?.website_Link}>{projectDetails?.ngoUsername}</a>
-                {projectDetails?.status === 0?
-                <div onClick={()=>approveProject(projectDetails.id)}  className=" mt-2 rounded-xl hover:bg-lime-500 ease-in-out duration-200 hover:cursor-pointer w-[200px] h-[46px] bg-lime-300 flex justify-center items-center hover:text-white">
-                <p className="text-2xl" >Approve</p>
-                </div>:
-                <p className='text-2xl text-lime-500'>Approved</p>}
+                {projectDetails?.status === 0 &&
+                <div className='flex  mt-2'>
+                        <div onClick={()=>approveProject(projectDetails.id)}  className="  mx-2 rounded-xl hover:bg-lime-500 ease-in-out duration-200 hover:cursor-pointer w-[200px] h-[46px] bg-lime-300 flex justify-center items-center hover:text-white">
+                            
+                        <p className="text-2xl" >Approve</p>
+                        </div>
+                        <div onClick={()=>rejectProject(projectDetails.id)}  className="mx-2 rounded-xl hover:bg-red-500 ease-in-out duration-200 hover:cursor-pointer w-[200px] h-[46px] bg-red-300 flex justify-center items-center hover:text-white">
+                            
+                        <p className="text-2xl" >Reject</p>
+                        </div>
+                        </div>
+                }
+                {projectDetails?.status === 1 &&
+                <p className='text-2xl text-lime-500'>Approved</p>
+                }
+            {projectDetails?.status === 3 &&
+                <p className='text-2xl text-red-500'>Rejected</p>
+                }
+
+                
                 
                 
             

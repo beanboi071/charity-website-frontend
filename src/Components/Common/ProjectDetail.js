@@ -32,7 +32,13 @@ export const ProjectDetail = () =>{
             break;
         case 2 :
             projectStatus = "Completed"; 
-            break; 
+            break;
+        case 3 :
+            projectStatus = "Rejected"; 
+            break;
+        default :
+                projectStatus = "Unknown"; 
+                break;   
     }
     useEffect(() => {
         getProjectDetails();

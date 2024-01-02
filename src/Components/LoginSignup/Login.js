@@ -6,6 +6,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { decodeToken } from "react-jwt";
 import { ToastContainer, toast } from "react-toastify";
+import { loginSchema } from "../../Schemas";
 export const Login = ({ isSignUp, setSignup }) => {
     const navigate = useNavigate();
     
@@ -31,7 +32,7 @@ export const Login = ({ isSignUp, setSignup }) => {
 
         }
       }
-    const { handleChange, handleSubmit, values,setFieldValue } = useFormik({
+    const { handleChange, handleSubmit, values,setFieldValue,errors } = useFormik({
         initialValues: {
             username: '',
             password: '',
@@ -43,6 +44,7 @@ export const Login = ({ isSignUp, setSignup }) => {
             LoginUser(values,resetForm); 
            
         },
+        validationSchema : loginSchema
     });
 
     console.log(values);
@@ -57,7 +59,8 @@ export const Login = ({ isSignUp, setSignup }) => {
                         <div className="item">
                             <label htmlFor="uName">Username</label>
                             <br />
-                            <input className="bg-slate-100 p-1 border-solid border-2 border-quaternary   rounded-md w-full"
+                            <input className={`bg-slate-100 p-1 border-solid border-2  rounded-md w-full
+                             ${errors.username ? 'input-error':'border-quaternary'} `}
                                 id="uName"
                                 name="username"
                                 type="text"
@@ -69,8 +72,9 @@ export const Login = ({ isSignUp, setSignup }) => {
                         <div className="item">
                             <label htmlFor="password">Password</label>
                             <br />
-                            <input className="bg-slate-100 p-1 border-solid border-2 border-quaternary rounded-md w-full"
-                                id="password"
+                            <input className={`bg-slate-100 p-1 border-solid border-2  rounded-md w-full
+                             ${errors.password ? 'input-error':'border-quaternary'} `}
+                             id="password"
                                 name="password"
                                 type="password"
                                 onChange={handleChange}

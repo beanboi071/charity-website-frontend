@@ -5,6 +5,7 @@ import { baseUrl } from "../Common/endpoints";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { decodeToken } from "react-jwt";
+import { ownerLoginSchema } from "../../Schemas";
 export const AdminLogin = () => {
     const navigate = useNavigate();
     const LoginAdmin = async(data) => {
@@ -20,7 +21,7 @@ export const AdminLogin = () => {
         }
         console.log(result.data);
       }
-    const { handleChange, handleSubmit, values } = useFormik({
+    const { handleChange, handleSubmit, values,errors } = useFormik({
         initialValues: {
             username: '',
             password: ''
@@ -31,6 +32,7 @@ export const AdminLogin = () => {
             console.log(values);
             resetForm();
         },
+        validationSchema : ownerLoginSchema
     });
     return (
         <div className="bg-gray-200 w-[100vw] h-[100vh] flex justify-center items-center p-0 w-700 shadow-xl border-solid border-green-600">
@@ -42,8 +44,9 @@ export const AdminLogin = () => {
                         <div className="item">
                             <label htmlFor="uName">Username</label>
                             <br />
-                            <input className="bg-slate-100 p-1 border-solid border-2 border-quaternary   rounded-md w-full"
-                                id="uName"
+                            <input className={`bg-slate-100 p-1 border-solid border-2  rounded-md w-full
+                             ${errors.password ? 'input-error':'border-quaternary'} `}
+                             id="uName"
                                 name="username"
                                 type="text"
                                 onChange={handleChange}
@@ -54,8 +57,9 @@ export const AdminLogin = () => {
                         <div className="item">
                             <label htmlFor="password">Password</label>
                             <br />
-                            <input className="bg-slate-100 p-1 border-solid border-2 border-quaternary rounded-md w-full"
-                                id="password"
+                            <input className={`bg-slate-100 p-1 border-solid border-2  rounded-md w-full
+                             ${errors.password ? 'input-error':'border-quaternary'} `}
+                              id="password"
                                 name="password"
                                 type="password"
                                 onChange={handleChange}

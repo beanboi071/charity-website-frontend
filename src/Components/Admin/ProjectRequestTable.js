@@ -42,6 +42,21 @@ export const ProjectRequestTable = () => {
           });
       });
   };
+  const rejectProject = async (id) => {
+    await axios
+      .get(`${baseUrl}Api/ProjectApi/RejectProject?projectId=` + id, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      })
+      .then((res) => {
+        axios
+          .get(`${baseUrl}Api/ProjectApi/GetPendingProjects?skip=0&take=10`, {
+            headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+          })
+          .then((res) => {
+            setprojectRequests(res.data.data.list);
+          });
+      });
+  };
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       setSkip(0);
